@@ -1,0 +1,94 @@
+Command run: python run_local.py --all
+
+--- 01_user_signup_valid.json ---
+{
+  "status": "ok",
+  "message": "Signup processed",
+  "data": {
+    "user_id": 2041,
+    "email": "student.one@school.edu.bh",
+    "plan": "edu",
+    "welcome_email_subject": "Welcome to the edu plan!"
+  },
+  "errors": []
+}
+
+--- 02_payment_valid.json ---
+{
+  "status": "ok",
+  "message": "Payment processed",
+  "data": {
+    "payment_id": "pay_a14v2jgbc8",
+    "user_id": 2041,
+    "amount": 12.75,
+    "currency": "BHD",
+    "fee": 0.255,
+    "net_amount": 12.495
+  },
+  "errors": []
+}
+
+--- 03_file_upload_valid.json ---
+{
+  "status": "ok",
+  "message": "Upload processed",
+  "data": {
+    "file_name": "project_report.pdf",
+    "size_bytes": 2450120,
+    "bucket": "ncst-uploads",
+    "uploader": "student.one@school.edu.bh",
+    "storage_class": "STANDARD_IA"
+  },
+  "errors": []
+}
+
+--- 04_user_signup_invalid_email.json ---
+{
+  "status": "error",
+  "message": "Event rejected",
+  "data": null,
+  "errors": [
+    "Invalid email format: 'not-an-email'"
+  ]
+}
+
+--- 05_payment_invalid_amount.json ---
+{
+  "status": "error",
+  "message": "Event rejected",
+  "data": null,
+  "errors": [
+    "amount must be greater than 0, got -5"
+  ]
+}
+
+--- 06_file_upload_invalid_missing_field.json ---
+{
+  "status": "error",
+  "message": "Event rejected",
+  "data": null,
+  "errors": [
+    "Missing required field: uploader"
+  ]
+}
+
+--- 07_unknown_type.json ---
+{
+  "status": "error",
+  "message": "Event rejected",
+  "data": null,
+  "errors": [
+    "Unknown event type: 'DEVICE_EVENT'"
+  ]
+}
+
+--- 08_bad_json_structure.json ---
+{
+  "status": "error",
+  "message": "Event rejected",
+  "data": null,
+  "errors": [
+    "Event must be a JSON object (dict), not a list or other type"
+  ]
+}
+
